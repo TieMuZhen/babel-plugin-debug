@@ -2,6 +2,11 @@
 手写一个根据环境不同而移除代码的babel插件，环境可自定义。
 
 > ## 前言
+需要提前学习的知识：
+- [babel原理及插件开发](https://juejin.cn/post/6844903603983892487)
+- [实时解析和查看JavaScript 的AST的在线工具](https://astexplorer.net/)
+
+> ## 启动
 开发babel插件必须的开发包安装如下：
 ```
 npm i @babel/core -D
