@@ -6,12 +6,21 @@
 - [babel原理及插件开发](https://juejin.cn/post/6844903603983892487)
 - [实时解析和查看JavaScript 的AST的在线工具](https://astexplorer.net/)
 
-### 访问者模式
+### 1、访问者模式
 Babel 插件的设计遵循访问者（Visitor）模式
 
 当 Babel 处理一个节点时，是以访问者的形式获取节点信息，并进行相关操作，这种方式是通过一个`visitor`对象来完成的。在 visitor 对象中定义了对于各种节点的访问函数，这样就可以针对不同的节点做出不同的处理。
 
 我们编写的 Babel 插件其实也是通过定义一个`实例化visitor对象`处理一系列的`AST`节点，来完成我们对代码的修改操作。
+
+### 2、@babel/core
+babel的编译器。其被拆分三个模块：`@babel/parser`、`@babel/traverse`、`@babel/generator`
+
+- `@babel/parser`：接受源码，进行词法分析、语法分析，生成`AST`。
+- `@babel/traverse`：接受一个`AST`，并对其遍历，根据`preset`、`plugin`进行逻辑处理，进行替换、删除、添加节点。
+- `@babel/generator`：接受最终生成的`AST`，并将其转换为代码字符串，同时此过程也可以创建`source map`。
+
+babel转码流程：`input string` -> `@babel/parser parser` -> `AST` -> `transformer[s]` -> `AST` -> `@babel/generator` -> `output string`。
 
 > ## 启动
 开发babel插件必须的开发包安装如下：
